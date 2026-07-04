@@ -2,8 +2,8 @@ import { useState } from "react"
 import { supabase } from "../supabaseClient"
 
 function LogInForm(props) {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   
   async function handleSubmit(e) {
     e.preventDefault()
