@@ -18,3 +18,13 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+app.get('/applications', async (req, res) => {
+    const { data, error } = await supabase.from('applications').select('*');
+    if (error) {
+        console.error('Error fetching applications:', error);
+        res.status(500).json({ error: 'Failed to fetch applications' });
+    } else {
+        res.json(data);
+    }
+});
