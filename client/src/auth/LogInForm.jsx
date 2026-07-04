@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { supabase } from "../supabaseClient"
 
-function LogInForm() {
+function LogInForm(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   
@@ -16,6 +16,7 @@ function LogInForm() {
       console.error("Error logging in:", error.message)
     } else {
       console.log("User logged in:", data)
+      props.setSession(data.session)  // Set the session in the parent component
     }
   }
 
