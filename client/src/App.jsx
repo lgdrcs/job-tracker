@@ -1,12 +1,19 @@
 import { useState } from 'react'
-import SignupForm from './SignUpForm'
+import SignupForm from './auth/SignUpForm'
+import LogInForm from './auth/LogInForm'
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const [showLogin, setShowLogin] = useState(false)
 
   return (
-    <SignupForm />
+    <>
+    {showLogin ? <LogInForm /> : <SignupForm />}
+    <button onClick={() => setShowLogin(!showLogin)}>
+      {showLogin ? "Switch to Sign Up" : "Switch to Log In"}
+    </button>
+    </>
   );
 }
 
