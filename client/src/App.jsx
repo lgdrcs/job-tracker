@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
-import { Routes, Route, Link } from 'react-router'
+import { Navigate, Routes, Route, Link } from 'react-router'
 import SignupForm from './auth/SignUpForm'
 import LogInForm from './auth/LogInForm'
 
@@ -49,6 +49,7 @@ function App() {
     <Routes>
       <Route path="/signup" element={<SignupForm signedUp={signedUp} setSignedUp={setSignedUp} setShowSignUp={setShowSignUp} setShowLogin={setShowLogin}  />} />
       <Route path="/login" element={<LogInForm setSession={setSession} /> } />
+      <Route path="/" element={<Navigate to="/login" /> } />
     </Routes>
      {toggleButton}
     </div>
