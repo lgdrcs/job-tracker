@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
-
+import { useNavigate } from "react-router";
 function SignupForm(props) {
   const [email, setEmail] = useState(""); // State to hold the email and password input values
   const [password, setPassword] = useState(""); // State to hold the email and password input values
+  const navigate = useNavigate();
   
   async function handleSubmit(e) { // Function to handle form submission
     e.preventDefault();
@@ -26,7 +27,7 @@ function SignupForm(props) {
       <div>
         <h1>Sign Up Successful!</h1>
         <p>Please confirm email address and log in.</p>
-        <button onClick={() => { props.setShowLogin(true); props.setSignedUp(false);}}>Go to Log In</button>
+        <button onClick={() => { navigate("/login"); props.setSignedUp(false);}}>Go to Log In</button>
       </div>
     );
   }

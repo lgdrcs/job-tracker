@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
+import { Routes, Route, Link } from 'react-router'
 import SignupForm from './auth/SignUpForm'
 import LogInForm from './auth/LogInForm'
 
@@ -31,12 +32,12 @@ function App() {
   }
 
   let toggleButton = (
-    <div>
-    <button onClick={() => setShowLogin(!showLogin)}>
-      {showLogin ? "Switch to Sign Up" : "Switch to Log In"}
-    </button>
-    </div>
-  )
+  <div>
+    <Link to="/signup">Sign Up</Link>
+    {" | "}
+    <Link to="/login">Log In</Link> 
+  </div>
+)
 
   if (signedUp) {
     toggleButton = null // Hide the toggle button if the user has signed up
@@ -45,8 +46,11 @@ function App() {
   return (
     <>
     <div>
-    {showLogin ? <LogInForm setSession={setSession} /> : <SignupForm signedUp={signedUp} setSignedUp={setSignedUp} setShowLogin={setShowLogin} />}
-    {toggleButton}
+    <Routes>
+      <Route path="/signup" element={<SignupForm signedUp={signedUp} setSignedUp={setSignedUp} setShowSignUp={setShowSignUp} setShowLogin={setShowLogin}  />} />
+      <Route path="/login" element={<LogInForm setSession={setSession} /> } />
+    </Routes>
+     {toggleButton}
     </div>
     </>
   );
