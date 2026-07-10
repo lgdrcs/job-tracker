@@ -1,59 +1,78 @@
 # Job Tracker
 
-> A full-stack web app that helps fresh graduates organize their job search — every application, status, and follow-up in one place.
+A tracker for job applications, built specifically for how fresh grads actually job hunt — company, role, status, link, notes, all in one place instead of scattered across a spreadsheet.
 
-🚧 **Status: In active development** — authentication is live, core tracking features are in progress. See the [roadmap](#roadmap) below.
+**Status:** actively building this. Auth works, the actual tracking features are next. Roadmap below.
 
-## Why I built this
+## Why
 
-After graduating in Computer Engineering, I was applying to dozens of roles across LinkedIn, company portals, and referrals — and tracking it all in a spreadsheet quickly became a mess. So I'm building the tool I wished I had: a simple tracker built specifically for the way fresh graduates actually job hunt.
+I graduated in Computer Engineering and started applying everywhere — LinkedIn, company portals, referrals, the works. My spreadsheet turned into a mess within a week: duplicate rows, statuses I forgot to update, links I lost. This is me building the tool I actually wanted instead.
+
+Also doubling as my learning project for full-stack dev, so expect the commit history to show a lot of trial and error.
 
 ## Features
 
-**Working now**
-- ✅ User signup with validation
-- ✅ Login / logout with session
+**Working:**
+- User signup
+- Login / logout with session
 
-**Roadmap**
-- [ ] Add / edit / delete job applications (company, role, link, date applied)
-- [ ] Status pipeline: Applied → Interviewing → Offer → Rejected
-- [ ] Dashboard with search and status filters
-- [ ] Notes and follow-up reminders per application
-- [ ] Stats: applications per week, response rate
-- [ ] CSV export
-- [ ] Live deployment
+**Not built yet:**
+- Add / edit / delete applications
+- Status pipeline (applied → interviewing → offer → hired, or rejected/withdrawn along the way)
+- Search and filter on the dashboard
+- Notes + follow-up reminders
+- Basic stats — applications per week, response rate
+- CSV export
+- Actually deployed somewhere
+- Python for AI integration — planning a small Python microservice for auto-filling applications from a pasted job posting
 
 ## Tech stack
 
-| Layer | Tech |
-|-------|------|
-| Frontend | React + Vite |
-| Backend | Node.js + Express |
-| Database | Supabase |
-| Auth | Supabase |
+React + Vite on the frontend, Node/Express on the backend, Supabase for the database (Postgres) and auth.
 
 ## Getting started
 
-**Prerequisites:** Node.js 18+ and Supabase
+**Prerequisites:** Node.js 20.19+ (Node 22 LTS recommended) and a free [Supabase](https://supabase.com) account.
+
+**1. Clone the repo**
 
 ```bash
-# Clone the repo
 git clone https://github.com/lgdrcs/job-tracker.git
 cd job-tracker
+```
 
-# Install and run the backend
+**2. Set up Supabase**
+
+Create a new Supabase project with email/password auth enabled, and an `applications` table. (Full schema documentation coming soon.)
+
+**3. Configure environment variables**
+
+```bash
+# Backend — from the project root
+cp .env.example .env
+
+# Frontend
+cp client/.env.example client/.env
+```
+
+Then open both `.env` files and fill in your Supabase URL and keys.
+
+**4. Run the backend**
+
+```bash
 npm install
-node server.js
+npm start        # or: npm run dev (auto-restarts on file changes)
+```
 
-# In a second terminal — install and run the frontend
+**5. Run the frontend** (in a second terminal)
+
+```bash
 cd client
 npm install
 npm run dev
 ```
 
-The app runs at `http://localhost:5173` (Vite default) with the API on `http://localhost:[your port]`.
-
-<!-- If you have environment variables (DB connection string, JWT secret), add a .env.example file to the repo and document the variables here. Never commit the real .env. -->
+The app runs at `http://localhost:5173` (Vite default), with the API on `http://localhost:5000` by default (configurable via `PORT` in `.env`).
 
 ## Project structure
 
@@ -66,9 +85,7 @@ job-tracker/
 
 ## Live demo
 
-🔗 Coming soon — deployment planned on Vercel (frontend) + Render (backend).
+Not deployed yet. Planning Vercel for the frontend, Render for the backend — as a seeded demo rather than open public signup, to avoid strangers eating into my Supabase/API usage.
 
 ## Author
-
-**Christian Laguador** — Computer Engineering graduate, Dubai, UAE
-https://www.linkedin.com/in/christian-laguador 
+Christian Laguador — Computer Engineering graduate, Dubai, UAE https://www.linkedin.com/in/christian-laguador
